@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 
+
 """
 This script creates a timeline of a conversation between two individuals in the email data. It starts with a dataframe
 that contains all emails
@@ -14,6 +15,7 @@ def get_df(csv_file_path):
     :return: parsed email dataframe
     """
     emails_df = pd.read_csv(csv_file_path, index_col=0, parse_dates=['date'])
+    emails_df['date'] = pd.to_datetime(emails_df['date'], utc=True)
     return emails_df
 
 
@@ -80,7 +82,6 @@ def create_timeline_js(conv_dict):
 
 
 if __name__ == '__main__':
-
     df = get_df("./emails.csv")
     conv_df = get_conv_df(df, 'john.arnold@enron.com', 'john.lavorato@enron.com')
     conv_dict = get_conv_json_js(conv_df)

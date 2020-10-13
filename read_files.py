@@ -7,6 +7,7 @@ import regex as re
 This script contains multiple functions that help create a final json with all emails 
 '''
 
+
 def file_exists(f, path):
     """Checks whether extracted file was extracted before."""
     return os.path.exists(os.path.join(path, f))
@@ -140,7 +141,7 @@ def caption(origin):
     if "To" in origin:
         To = origin["to"].strip()
         To = re.sub("\n\t", "", To)
-        To = To.split(',')
+        To = To.split(', ')
     Subject = ""
     if "Subject" in origin:
         Subject = origin["subject"].strip()
